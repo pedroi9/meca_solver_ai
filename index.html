@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MecaSolver IA</title>
+</head>
+<body>
+    <h1>Consulta a MecaSolver IA</h1>
+    <textarea id="description" rows="4" cols="50" placeholder="Describe tu problema..."></textarea><br>
+    <button onclick="analyzeProblem()">Analizar</button>
+    <h2>Soluciones:</h2>
+    <pre id="solutions"></pre>
+
+    <script>
+        async function analyzeProblem() {
+            const description = document.getElementById('description').value;
+            const response = await fetch('https://mecasolver.onrender.com/analyze', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ description })
+            });
+            const data = await response.json();
+            document.getElementById('solutions').innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
