@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify
 import spacy
 
 app = Flask(__name__)
-nlp = spacy.load('es_core_news_sm')
+import es_core_news_sm
+nlp = es_core_news_sm.load()
+
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
